@@ -1,6 +1,6 @@
 [package]
 name = "mocktopus"
-version = "0.8.0"
+version = "0.9.0"
 authors = [
     "CodeSandwich <igor.zuk@protonmail.com>",
     "gregdhill <gregorydhill@outlook.com>"
