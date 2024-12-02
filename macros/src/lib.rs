@@ -3,7 +3,7 @@
     html_logo_url = "https://raw.githubusercontent.com/CodeSandwich/mocktopus/master/logo.png",
     html_favicon_url = "https://raw.githubusercontent.com/CodeSandwich/mocktopus/master/logo.png"
 )]
-#![feature(proc_macro_diagnostic)]
+// #![feature(proc_macro_diagnostic)]
 
 extern crate proc_macro;
 
@@ -13,6 +13,7 @@ mod item_injector;
 
 use proc_macro::{Span, TokenStream};
 use quote::ToTokens;
+use log::{info, warn};
 
 /// Procedural macro, makes items and their sub-items mockable
 ///
@@ -100,10 +101,11 @@ pub fn mockable(_: TokenStream, token_stream: TokenStream) -> TokenStream {
     let mut item: syn::Item = match syn::parse(token_stream.clone()) {
         Ok(item) => item,
         Err(err) => {
-            Span::call_site()
-                .warning("Failed to make code mockable")
-                .error(format!("Failed to parse: {}", err))
-                .emit();
+            // Span::call_site()
+            //     .warning("Failed to make code mockable")
+            //     .error(format!("Failed to parse: {}", err))
+            //     .emit();
+            warn!("Failed to parse token stream: {}", err);
             return token_stream;
         }
     };

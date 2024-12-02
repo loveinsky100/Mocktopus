@@ -1,4 +1,5 @@
 #![feature(fn_traits, tuple_trait, unboxed_closures)]
+#![allow(invalid_reference_casting)]
 
 //! Mocking framework for Rust (currently only nightly)
 //!

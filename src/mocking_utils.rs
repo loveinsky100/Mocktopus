@@ -26,5 +26,5 @@ use std::cell::UnsafeCell;
 /// }
 /// ```
 pub unsafe fn as_mut<T>(t_ref: &T) -> &mut T {
-    &mut *(UnsafeCell::new(t_ref).get() as *mut T)
+    &mut *(t_ref as *const T as *mut T)
 }
