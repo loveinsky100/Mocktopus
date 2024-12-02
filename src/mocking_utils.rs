@@ -1,3 +1,5 @@
+use std::cell::UnsafeCell;
+
 /// Converts non-mutable reference to a mutable one
 ///
 /// Allows creating multiple mutable references to a single item breaking Rust's safety policy.
@@ -24,5 +26,5 @@
 /// }
 /// ```
 pub unsafe fn as_mut<T>(t_ref: &T) -> &mut T {
-    &mut *(t_ref as *const T as *mut T)
+    &mut *(UnsafeCell::new(t_ref).get() as *mut T)
 }
